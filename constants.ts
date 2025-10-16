@@ -1,5 +1,5 @@
-// FIX: Import Certification type.
-import type { NavLink, SkillCategory, Project, BlogPost, GithubRepo, Certification } from './types';
+// FIX: Import missing Certification and BlogPost types.
+import type { NavLink, SkillCategory, Project, GithubRepo, Certification, BlogPost } from './types';
 import {
     AwsIcon, AzureIcon, GcpIcon, DockerIcon, KubernetesIcon, JenkinsIcon, TerraformIcon,
     AnsibleIcon, GitIcon, PrometheusIcon, GrafanaIcon, PythonIcon, LinuxIcon
@@ -9,11 +9,10 @@ export const PERSONAL_INFO = {
   name: "Haider Shaikh",
   title: "DevOps Engineer | Cloud Enthusiast",
   tagline: "I'm a DevOps Engineer and Cloud Enthusiast. I strive to build immersive and beautiful applications through carefully crafted code and user-centric design.",
-  email: "haider.shaikh@example.com",
+  email: "haidershaikh2050@gmail.com",
   github: "https://github.com/haidershaikh",
   linkedin: "https://linkedin.com/in/haidershaikh",
   resumeUrl: "/haider-shaikh-resume.pdf",
-  profileImageUrl: "https://i.ibb.co/L6pWqP9/haider-shaikh-profile.jpg"
 };
 
 export const SECTIONS = {
@@ -22,9 +21,6 @@ export const SECTIONS = {
   skills: 'skills',
   projects: 'projects',
   github: 'github',
-  // FIX: Add certifications section to be used in App.tsx.
-  certifications: 'certifications',
-  blog: 'blog',
   contact: 'contact'
 };
 
@@ -33,9 +29,6 @@ export const NAV_LINKS: NavLink[] = [
   { name: 'Skills', href: `#${SECTIONS.skills}` },
   { name: 'Projects', href: `#${SECTIONS.projects}` },
   { name: 'Repositories', href: `#${SECTIONS.github}` },
-  // FIX: Add Certifications link to the navigation.
-  { name: 'Certifications', href: `#${SECTIONS.certifications}` },
-  { name: 'Blog', href: `#${SECTIONS.blog}` },
 ];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
@@ -82,6 +75,7 @@ export const PROJECTS: Project[] = [
     githubLink: '#',
     liveDemoLink: '#',
     imageUrl: 'https://picsum.photos/seed/k8s-aws/1000/800',
+    architectureDiagramUrl: 'https://picsum.photos/seed/arch-k8s/1000/600',
   },
   {
     title: 'CI/CD Pipeline for Microservices with Jenkins & Docker',
@@ -89,6 +83,7 @@ export const PROJECTS: Project[] = [
     techStack: ['Jenkins', 'Docker', 'Kubernetes', 'Groovy', 'GitHub'],
     githubLink: '#',
     imageUrl: 'https://picsum.photos/seed/cicd-jenkins/1000/800',
+    architectureDiagramUrl: 'https://picsum.photos/seed/arch-cicd/1000/600',
   },
   {
     title: 'Centralized Monitoring with Prometheus & Grafana',
@@ -97,6 +92,7 @@ export const PROJECTS: Project[] = [
     githubLink: '#',
     liveDemoLink: '#',
     imageUrl: 'https://picsum.photos/seed/monitoring-grafana/1000/800',
+    architectureDiagramUrl: 'https://picsum.photos/seed/arch-monitoring/1000/600',
   },
   {
     title: 'Automated Server Configuration with Ansible',
@@ -104,49 +100,7 @@ export const PROJECTS: Project[] = [
     techStack: ['Ansible', 'YAML', 'Linux', 'Bash'],
     githubLink: '#',
     imageUrl: 'https://picsum.photos/seed/ansible-server/1000/800',
-  },
-];
-
-export const BLOG_POSTS: BlogPost[] = [
-    {
-        title: 'Setting up GitOps with ArgoCD: A Practical Guide',
-        summary: 'A step-by-step tutorial on implementing a GitOps workflow using ArgoCD to automate application deployment to Kubernetes.',
-        link: '#',
-        publication: 'Medium',
-        date: 'Oct 2023'
-    },
-    {
-        title: 'Lessons Learned from a Production Kubernetes Outage',
-        summary: 'A deep dive into a real-world Kubernetes incident, covering root cause analysis, mitigation strategies, and preventative measures.',
-        link: '#',
-        publication: 'Dev.to',
-        date: 'Jul 2023'
-    },
-    {
-        title: 'Infrastructure as Code: Why Terraform is a Game-Changer',
-        summary: 'Exploring the benefits of IaC and how Terraform helps in managing complex cloud infrastructure efficiently and reliably.',
-        link: '#',
-        publication: 'Personal Blog',
-        date: 'Apr 2023'
-    },
-];
-
-// FIX: Add CERTIFICATIONS constant to fix error in components/Certifications.tsx.
-export const CERTIFICATIONS: Certification[] = [
-  {
-    name: 'AWS Certified DevOps Engineer - Professional',
-    issuer: 'Amazon Web Services',
-    link: '#',
-  },
-  {
-    name: 'Certified Kubernetes Administrator (CKA)',
-    issuer: 'The Linux Foundation',
-    link: '#',
-  },
-  {
-    name: 'HashiCorp Certified: Terraform Associate',
-    issuer: 'HashiCorp',
-    link: '#',
+    architectureDiagramUrl: 'https://picsum.photos/seed/arch-ansible/1000/600',
   },
 ];
 
@@ -186,5 +140,42 @@ export const MOCK_GITHUB_REPOS: GithubRepo[] = [
     stars: 76,
     forks: 19,
     url: '#',
+  },
+];
+
+// FIX: Add missing CERTIFICATIONS constant to fix import error in components/Certifications.tsx.
+export const CERTIFICATIONS: Certification[] = [
+  {
+    name: 'AWS Certified Solutions Architect - Associate',
+    issuer: 'Amazon Web Services',
+    link: '#',
+  },
+  {
+    name: 'Certified Kubernetes Administrator (CKA)',
+    issuer: 'The Linux Foundation',
+    link: '#',
+  },
+  {
+    name: 'HashiCorp Certified: Terraform Associate',
+    issuer: 'HashiCorp',
+    link: '#',
+  },
+];
+
+// FIX: Add missing BLOG_POSTS constant to fix import error in components/Blog.tsx.
+export const BLOG_POSTS: BlogPost[] = [
+  {
+    title: 'GitOps with Kubernetes: A Practical Guide',
+    summary: 'A deep dive into implementing GitOps workflows for continuous deployment to Kubernetes using tools like Argo CD and Flux.',
+    date: 'Oct 15, 2023',
+    link: '#',
+    publication: 'Medium',
+  },
+  {
+    title: 'Serverless vs. Containers: Choosing the Right Tool for the Job',
+    summary: 'An analysis of the trade-offs between serverless architectures (AWS Lambda) and container orchestration (Kubernetes) for modern applications.',
+    date: 'Jul 02, 2023',
+    link: '#',
+    publication: 'Dev.to',
   },
 ];

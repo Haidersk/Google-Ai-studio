@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { PERSONAL_INFO } from '../constants';
 import { FileTextIcon } from './icons/FileTextIcon';
@@ -56,9 +57,9 @@ const Contact: React.FC<ContactProps> = ({ id }) => {
           href={PERSONAL_INFO.resumeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 hover:opacity-90 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+          className="group inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 hover:opacity-90 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
         >
-          <FileTextIcon className="w-5 h-5" />
+          <FileTextIcon className="w-5 h-5 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_4px_rgba(255,255,255,0.7)]" />
           Download Resume
         </a>
       </div>

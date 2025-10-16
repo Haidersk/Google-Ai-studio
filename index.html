@@ -5,6 +5,19 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Haider Shaikh - DevOps Portfolio</title>
+    <script>
+      // Prevents FOUC for dark mode by applying theme from localStorage or system preference before rendering
+      (function() {
+        try {
+          var theme = localStorage.getItem('theme');
+          if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (_) {}
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,17 +34,58 @@
         from { opacity: 0; }
         to { opacity: 1; }
       }
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
       @keyframes scaleIn {
         from { opacity: 0; transform: scale(0.95); }
         to { opacity: 1; transform: scale(1); }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes zoomIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      @keyframes gradient-shift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
       }
 
       .animate-fadeIn {
         animation: fadeIn 0.5s ease-out forwards;
       }
+      .animate-fadeOut {
+        animation: fadeOut 0.3s ease-out forwards;
+      }
       .animate-scaleIn {
         opacity: 0; /* Start hidden */
         animation: scaleIn 0.3s ease-out forwards;
+      }
+      .animate-fadeInUp {
+        animation: fadeInUp 0.7s ease-out forwards;
+      }
+      .animate-zoomIn {
+        animation: zoomIn 0.7s ease-out forwards;
+      }
+      .animate-gradient-shift {
+        animation: gradient-shift 15s ease infinite;
       }
 
       /* Scroll-triggered Animations */
@@ -43,6 +97,47 @@
       .scroll-fade-up.is-visible {
         opacity: 1;
         transform: translateY(0);
+      }
+
+      /* Card Grid Hover Effect */
+      :root {
+        --grid-effect-color: #a855f7; /* purple-500 */
+      }
+      .dark {
+        --grid-effect-color: #c084fc; /* purple-400 */
+      }
+      .project-image-container {
+        position: relative;
+        overflow: hidden;
+      }
+      .card__grid-effect {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(10, 1fr);
+      }
+      .card__grid-effect-tile {
+        position: relative;
+      }
+      .card__grid-effect-tile::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0.2rem;
+        height: 0.2rem;
+        background-color: var(--grid-effect-color);
+        border-radius: 50%;
+        transition: width 0.3s ease, height 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 0 0 var(--grid-effect-color);
+      }
+      .card__grid-effect-tile:hover::before {
+        width: 1rem;
+        height: 1rem;
+        transition: width 0.07s linear, height 0.07s linear;
+        box-shadow: 1rem 0 0 -0.1rem var(--grid-effect-color), -1rem 0 0 -0.1rem var(--grid-effect-color), 0 -1rem 0 -0.1rem var(--grid-effect-color), 0 1rem 0 -0.1rem var(--grid-effect-color), 1rem 1rem 0 -0.1rem var(--grid-effect-color), 1rem -1rem 0 -0.1rem var(--grid-effect-color), -1rem 1rem 0 -0.1rem var(--grid-effect-color), -1rem -1rem 0 -0.1rem var(--grid-effect-color), 1rem 2rem 0 -0.2rem var(--grid-effect-color), 1rem -2rem 0 -0.2rem var(--grid-effect-color), -1rem 2rem 0 -0.2rem var(--grid-effect-color), -1rem -2rem 0 -0.2rem var(--grid-effect-color), 1rem 3rem 0 -0.3rem var(--grid-effect-color), 1rem -3rem 0 -0.3rem var(--grid-effect-color), -1rem 3rem 0 -0.3rem var(--grid-effect-color), -1rem -3rem 0 -0.3rem var(--grid-effect-color), 2rem 0 0 -0.2rem var(--grid-effect-color), -2rem 0 0 -0.2rem var(--grid-effect-color), 0 -2rem 0 -0.2rem var(--grid-effect-color), 0 2rem 0 -0.2rem var(--grid-effect-color), 2rem 1rem 0 -0.2rem var(--grid-effect-color), 2rem -1rem 0 -0.2rem var(--grid-effect-color), -2rem 1rem 0 -0.2rem var(--grid-effect-color), -2rem -1rem 0 -0.2rem var(--grid-effect-color), 2rem 2rem 0 -0.4rem var(--grid-effect-color), 2rem -2rem 0 -0.4rem var(--grid-effect-color), -2rem 2rem 0 -0.4rem var(--grid-effect-color), -2rem -2rem 0 -0.4rem var(--grid-effect-color), 2rem 3rem 0 -0.6rem var(--grid-effect-color), 2rem -3rem 0 -0.6rem var(--grid-effect-color), -2rem 3rem 0 -0.6rem var(--grid-effect-color), -2rem -3rem 0 -0.6rem var(--grid-effect-color), 3rem 0 0 -0.3rem var(--grid-effect-color), -3rem 0 0 -0.3rem var(--grid-effect-color), 0 -3rem 0 -0.3rem var(--grid-effect-color), 0 3rem 0 -0.3rem var(--grid-effect-color), 3rem 1rem 0 -0.3rem var(--grid-effect-color), 3rem -1rem 0 -0.3rem var(--grid-effect-color), -3rem 1rem 0 -0.3rem var(--grid-effect-color), -3rem -1rem 0 -0.3rem var(--grid-effect-color), 3rem 2rem 0 -0.6rem var(--grid-effect-color), 3rem -2rem 0 -0.6rem var(--grid-effect-color), -3rem 2rem 0 -0.6rem var(--grid-effect-color), -3rem -2rem 0 -0.6rem var(--grid-effect-color), 3rem 3rem 0 -0.9rem var(--grid-effect-color), 3rem -3rem 0 -0.9rem var(--grid-effect-color), -3rem 3rem 0 -0.9rem var(--grid-effect-color), -3rem -3rem 0 -0.9rem var(--grid-effect-color);
       }
     </style>
   <script type="importmap">

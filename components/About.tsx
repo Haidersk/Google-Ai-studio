@@ -41,25 +41,15 @@ const About: React.FC<AboutProps> = ({ id }) => {
   return (
     <section ref={sectionRef} id={id} className="px-6 md:px-12 py-16 lg:py-24">
       <SectionTitle isVisible={isVisible}>About Me</SectionTitle>
-      <div className="grid md:grid-cols-5 gap-10 items-center">
-        <div className={`md:col-span-2 scroll-fade-up ${isVisible ? 'is-visible' : ''}`} style={{ transitionDelay: '100ms' }}>
-          <div className="relative w-full max-w-xs mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg transform -rotate-6"></div>
-            <img
-              src={PERSONAL_INFO.profileImageUrl}
-              alt="Haider Shaikh"
-              className="relative rounded-lg shadow-xl w-full h-auto object-cover"
-            />
-          </div>
-        </div>
-        <div className={`md:col-span-3 space-y-6 text-lg text-gray-600 dark:text-gray-300 scroll-fade-up ${isVisible ? 'is-visible' : ''}`} style={{ transitionDelay: '200ms' }}>
-          <p>
+      <div className="max-w-3xl mx-auto">
+        <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300">
+          <p className={`scroll-fade-up ${isVisible ? 'is-visible' : ''}`} style={{ transitionDelay: '300ms' }}>
             Hello! I'm Haider, a passionate DevOps Engineer with a knack for automating processes and building robust, scalable infrastructure. My journey in tech began with a curiosity for how complex systems work, which led me to the world of cloud computing and automation.
           </p>
-          <p>
+          <p className={`scroll-fade-up ${isVisible ? 'is-visible' : ''}`} style={{ transitionDelay: '450ms' }}>
             I specialize in building CI/CD pipelines, managing containerized applications with Kubernetes, and provisioning infrastructure as code using tools like Terraform. I thrive on bridging the gap between development and operations to accelerate software delivery and improve reliability.
           </p>
-          <p className="font-semibold text-purple-600 dark:text-purple-400 border-l-4 border-purple-500 dark:border-purple-400 pl-4">
+          <p className={`font-semibold text-purple-600 dark:text-purple-400 border-l-4 border-purple-500 dark:border-purple-400 pl-4 scroll-fade-up ${isVisible ? 'is-visible' : ''}`} style={{ transitionDelay: '600ms' }}>
             My philosophy is simple: "Automate everything." I believe in leveraging the power of code to create self-healing, efficient, and secure systems.
           </p>
         </div>

@@ -45,11 +45,11 @@ const RepoCard: React.FC<{ repo: GithubRepo; index: number; isVisible: boolean }
             <span>{repo.language}</span>
           </div>
           <div className="flex items-center">
-            <StarIcon className="w-4 h-4 mr-1" />
+            <StarIcon className="w-4 h-4 mr-1 transition-all duration-300 group-hover:scale-125 group-hover:drop-shadow-[0_0_3px_rgba(168,85,247,0.7)] dark:group-hover:drop-shadow-[0_0_3px_rgba(192,132,252,0.7)]" />
             <span>{repo.stars}</span>
           </div>
           <div className="flex items-center">
-            <ForkIcon className="w-4 h-4 mr-1" />
+            <ForkIcon className="w-4 h-4 mr-1 transition-all duration-300 group-hover:scale-125 group-hover:drop-shadow-[0_0_3px_rgba(168,85,247,0.7)] dark:group-hover:drop-shadow-[0_0_3px_rgba(192,132,252,0.7)]" />
             <span>{repo.forks}</span>
           </div>
         </div>

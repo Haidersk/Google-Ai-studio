@@ -22,14 +22,7 @@ export interface Project {
   githubLink: string;
   liveDemoLink?: string;
   imageUrl: string;
-}
-
-export interface BlogPost {
-  title: string;
-  summary: string;
-  link: string;
-  publication: string;
-  date: string;
+  architectureDiagramUrl?: string;
 }
 
 export interface GithubRepo {
@@ -42,9 +35,18 @@ export interface GithubRepo {
   url: string;
 }
 
-// FIX: Add Certification interface to fix type error in components/Certifications.tsx
+// FIX: Add missing Certification interface to fix import error in components/Certifications.tsx.
 export interface Certification {
   name: string;
   issuer: string;
   link: string;
+}
+
+// FIX: Add missing BlogPost interface to fix import error in components/Blog.tsx.
+export interface BlogPost {
+  title: string;
+  summary: string;
+  date: string;
+  link: string;
+  publication: string;
 }

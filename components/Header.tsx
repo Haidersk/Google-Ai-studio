@@ -3,12 +3,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import { NAV_LINKS, PERSONAL_INFO } from '../constants';
 import type { NavLink } from '../types';
 import { SearchIcon } from './icons/SearchIcon';
+import { SunIcon } from './icons/SunIcon';
+import { MoonIcon } from './icons/MoonIcon';
 
 interface HeaderProps {
   onSearchClick: () => void;
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onSearchClick }) => {
+const Header: React.FC<HeaderProps> = ({ onSearchClick, theme, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
@@ -77,10 +81,21 @@ const Header: React.FC<HeaderProps> = ({ onSearchClick }) => {
             <NavLinks links={NAV_LINKS} className="flex items-center space-x-6" />
             <button
               onClick={onSearchClick}
-              className="text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300"
+              className="group text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 hover:scale-110"
               aria-label="Open search"
             >
-              <SearchIcon className="w-5 h-5" />
+              <SearchIcon className="w-5 h-5 transition-all duration-300 group-hover:drop-shadow-[0_0_4px_rgba(168,85,247,0.7)] dark:group-hover:drop-shadow-[0_0_4px_rgba(192,132,252,0.7)]" />
+            </button>
+            <button
+                onClick={toggleTheme}
+                className="group text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 hover:scale-110"
+                aria-label="Toggle theme"
+            >
+                {theme === 'light' ? (
+                    <MoonIcon className="w-5 h-5 transition-all duration-300 group-hover:drop-shadow-[0_0_4px_rgba(168,85,247,0.7)] dark:group-hover:drop-shadow-[0_0_4px_rgba(192,132,252,0.7)]" />
+                ) : (
+                    <SunIcon className="w-5 h-5 transition-all duration-300 group-hover:drop-shadow-[0_0_4px_rgba(168,85,247,0.7)] dark:group-hover:drop-shadow-[0_0_4px_rgba(192,132,252,0.7)]" />
+                )}
             </button>
              <a
                 href="#contact"
@@ -93,14 +108,25 @@ const Header: React.FC<HeaderProps> = ({ onSearchClick }) => {
           <div className="md:hidden flex items-center gap-4">
              <button
                 onClick={onSearchClick}
-                className="text-gray-600 dark:text-gray-300 focus:outline-none"
+                className="group text-gray-600 dark:text-gray-300 focus:outline-none transition-transform duration-300 hover:scale-110"
                 aria-label="Open search"
             >
-                <SearchIcon className="w-6 h-6" />
+                <SearchIcon className="w-6 h-6 transition-all duration-300 group-hover:drop-shadow-[0_0_4px_rgba(168,85,247,0.7)] dark:group-hover:drop-shadow-[0_0_4px_rgba(192,132,252,0.7)]" />
             </button>
             <button
+                onClick={toggleTheme}
+                className="group text-gray-600 dark:text-gray-300 focus:outline-none transition-transform duration-300 hover:scale-110"
+                aria-label="Toggle theme"
+              >
+                {theme === 'light' ? (
+                  <MoonIcon className="w-6 h-6 transition-all duration-300 group-hover:drop-shadow-[0_0_4px_rgba(168,85,247,0.7)] dark:group-hover:drop-shadow-[0_0_4px_rgba(192,132,252,0.7)]" />
+                ) : (
+                  <SunIcon className="w-6 h-6 transition-all duration-300 group-hover:drop-shadow-[0_0_4px_rgba(168,85,247,0.7)] dark:group-hover:drop-shadow-[0_0_4px_rgba(192,132,252,0.7)]" />
+                )}
+              </button>
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-600 dark:text-gray-300 focus:outline-none"
+              className="text-gray-600 dark:text-gray-300 focus:outline-none transition-transform duration-300 hover:scale-110"
               aria-label="Toggle menu"
             >
               <svg
